@@ -45,7 +45,7 @@ define tomcat::instance::source (
   }
 
   exec { 'make startup scripts executable':
-    command => "/bin/chown u+x ${catalina_base}/bin/*.sh",
+    command => "/bin/chmod u+x ${catalina_base}/bin/*.sh",
     require => Staging::Extract["${name}-${filename}"]
   }
 }
