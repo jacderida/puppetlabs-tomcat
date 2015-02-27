@@ -43,4 +43,9 @@ define tomcat::instance::source (
     group   => $::tomcat::group,
     strip   => $_strip,
   }
+
+  exec { 'make startup scripts executable':
+    command => "/bin/chown u+x ${catalina_base}/bin/*.sh",
+    require => Staging::Extract["${name}-${filename}"]
+  }
 }
